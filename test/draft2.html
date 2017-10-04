@@ -180,10 +180,10 @@ for(var i in regionSet) {
             
             if(this.state == 0) {
                 this.state = 1;
-                st.animate({fill: color, stroke: "#fff"}, 100); //color at moment of click when colored; should be just var color
+                st.animate({fill: color, stroke: strcolor}, 100); //color at moment of click when colored; should be just var color
             }else {
                 this.state = 0;
-                st.animate({fill: defcolor, stroke: "#fff"}, 100); // color at moment of click when uncolored; should be just default background color
+                st.animate({fill: defcolor, stroke: strcolor}, 100); // color at moment of click when uncolored; should be just default background color
             }
             
         };
