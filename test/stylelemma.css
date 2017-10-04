@@ -1,0 +1,11 @@
+body {
+    background: #999;
+}
+section {
+    width: 800px;
+    height: 800px;
+}
+#place {
+    height: 100%;
+    width: 100%;
+}

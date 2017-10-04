@@ -1,0 +1,107 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>A Javascript Map Generator</title>
+    
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+  <section><div id="place">
+        </div>
+    </section>
+
+    <script src="raphael.js" type="text/javascript"></script>
+    <script src="../lib/glsim.js" type="text/javascript"></script>
+
+  
+
+
+    <link href='stylelemma.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div id="panel">
+        <div id="info">
+            <h1>Map Generator</h1>
+            
+
+<script type="text/javascript">
+
+var w = 300;
+var h = 300;	
+var paper = Raphael("place");
+paper.setViewBox(0,0,w,h,true);
+
+
+var color = "#ff3300";
+var blue = "#0000ff";
+var red = "#ff3300";
+
+
+function doKeyDown(evt) {
+        // Second skinnybrick rotation keys 
+        var key = evt.keyCode;
+        if ( key == 82)
+            color = red;    
+        else if (key == 66)
+            color = blue ;
+    //    if (key >=34 && key <= 40) {
+  //          evt.preventDefault();
+
+        }
+
+
+//window.alert()
+
+
+	var style = {
+		fill: "#555", //default color of regions
+		stroke: "#fff",
+	 	"stroke-width": 2,
+	 	"stroke-linejoin": "round"
+	};
+
+
+
+
+	var aus = {}
+		aus.polyOne = paper.path("M24.727,116.5L2.914,79l21.813-37.5h43.627L90.167,79l-21.813,37.5H24.727z").attr(style);
+		aus.polyTwo = paper.path("M156.727,116.5L134.914,79l21.813-37.5h43.627L222.167,79l-21.813,37.5H156.727z").attr(style);
+		aus.polyThree = paper.path("M90.727,78.5L68.914,41L90.727,3.5h43.627L156.167,41l-21.813,37.5H90.727z").attr(style);
+		aus.polyFour = paper.path("M90.727,154.5L68.914,117l21.813-37.5h43.627l21.813,37.5l-21.813,37.5H90.727z").attr(style);
+	
+  for(var i in aus) {
+
+    (function (st) {
+
+    	st.node.state = 0;
+    
+// leave stroke color as is
+
+		st.node.onmouseover = function() {
+			st.animate({fill: color, stroke: "#fff"}, 100);  // color when mouse is on that region
+		};
+		st.node.onmouseout = function() {
+			st.animate({fill: color, stroke: "#fff"}, 100); // dont know what this does; seems harmless and unnecessary
+			if(this.state == 1){
+				st.animate({fill: color, stroke: "#fff"}, 100); // color when mouse leaves and region is clicked; should be var color
+			}else {
+				st.animate({fill: "#555", stroke: "#fff"}, 100); //color when mouse leaves and region is unclicked; should be default background
+			}
+		};
+		st.node.onclick = function() {
+			
+			if(this.state == 0) {
+				this.state = 1;
+				st.animate({fill: color, stroke: "#fff"}, 100); //color at moment of click when colored; should be just var color
+			}else {
+				this.state = 0;
+				st.animate({fill: "#555", stroke: "#fff"}, 100); // color at moment of click when uncolored; should be just default background color
+			}
+			
+		};
+
+    }) (aus[i]);
+
+   }
+
+  </script>
+</body>
+</html>
